@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Material Design User Interface Offline-->
+	<link
+	  rel="stylesheet"
+	  href="./css/mdui.min.css"
+	  crossorigin="anonymous"
+	/>
+	<script
+	  src="./js/mdui.min.js"
+	  crossorigin="anonymous"
+	></script>
+	<!-- MDUI CSS -->
+	<link
+	  rel="stylesheet"
+	  href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css"
+	  integrity="sha384-cLRrMq39HOZdvE0j6yBojO4+1PrHfB7a9l5qLcmRm/fiWXYY+CndJPmyu5FV/9Tw"
+	  crossorigin="anonymous"
+	/>
+	
+	<!-- MDUI JavaScript -->
+	<script
+	  src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js"
+	  integrity="sha384-gCMZcshYKOGRX9r6wbDrvF+TcCCswSHFucUzUPwka+Gr+uHgjlYvkABr95TCOz3A"
+	  crossorigin="anonymous"
+	></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <script type="text/javascript">
+    	
+   		document.addEventListener('plusready', function(){
+   			//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。")
+   			
+   		});
+		
+	var httpRequest = new XMLHttpRequest();
+		function setip(){
+			ip = prompt("设备IP地址");
+		}
+   		function getinfo(){
+			var infojs = "http://"+ip+"/getinfo.js";
+			    var script = document.createElement('script');
+			    script.setAttribute('type','text/javascript');
+			    script.setAttribute('src',infojs);
+			    document.getElementsByTagName('head')[0].appendChild(script);
+			alert(info);
+		}
+		function turnlight(){
+			httpRequest.open('GET', 'http://'+ip+"/appopen"+lnum, true);
+			httpRequest.send();
+		}
+		function offlight(){
+			httpRequest.open('GET', 'http://'+ip+"/appclose"+lnum, true);
+			httpRequest.send();
+		}
+    </script>
+</head>
+<body class="mdui-theme-primary-teal">
+	<div class="mdui-toolbar mdui-color-theme">
+	  <span class="mdui-typo-title">TSC物联网客户端</span>
+	  <div class="mdui-toolbar-spacer"></div>
+	  <a href="javascript:location.reload();" class="mdui-btn mdui-btn-icon">
+	    <i class="mdui-icon material-icons">refresh</i>
+	  </a>
+	  
+	</div>
+	<div align="center">
+	<h1>道具设备控制</h1>
+	<a href="javascript:setip();" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme">设置设备IP地址</a>
+	<a href="javascript:getinfo();"class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme">获得设备当前信息</a>
+	</div>
+	<div align="center" id="Control">
+	<a href="javascript:turnlight(lnum=1);" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme">打开第一个灯光</a>
+	<a href="javascript:offlight(lnum=1);"class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme">关闭第一个灯光</a></br>
+	<a href="javascript:turnlight(lnum=2);" class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme">打开第二个灯光</a>
+	<a href="javascript:offlight(lnum=2);"class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme">关闭第二个灯光</a>
+	</div>
+</body>
+</html>
